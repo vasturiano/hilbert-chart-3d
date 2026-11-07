@@ -10,6 +10,8 @@ A 3D hilbert space-filling curve chart for representing one-dimensional lengths 
 
 Uses [ThreeJS](https://github.com/mrdoob/three.js/)/WebGL for 3D rendering.
 
+See also the [2D version](https://github.com/vasturiano/hilbert-chart).
+
 ## Examples
 
 * [IPv4 Address Space](https://vasturiano.github.io/hilbert-chart-3d/examples/ipv4-address-space/) ([source](https://github.com/vasturiano/hilbert-chart-3d/blob/master/examples/ipv4-address-space/index.html))
