@@ -1,0 +1,47 @@
+<head>
+  <script src='//cdn.jsdelivr.net/npm/hilbert-chart-3d'></script>
+<!--  <script src='../../dist/hilbert-chart-3d.js'></script>-->
+
+  <style>
+      body { margin: 0; }
+  </style>
+</head>
+<body>
+  <div id='chart'></div>
+
+  <script>
+    // Gen random data
+    const N_CAT = 14;
+    const MAX_VAL = 100;
+    const data = [...Array(N_CAT)].map((_, i) => ({
+      name: `Series ${i+1}`,
+      val: Math.round(Math.random() * MAX_VAL)
+    }));
+
+    //
+
+    const hilbertOrder = 5;
+    const hilbertLength = Math.pow(8, hilbertOrder);
+
+    const dataSum = data.map(({ val }) => val).reduce((acc, val) => acc + val, 0);
+    const getHilbertVal = val => Math.round(val / dataSum * hilbertLength);
+
+    let carry = 0;
+    const hilbertData = data.map(({ val, ...rest }) => {
+      const d = {
+        start: carry,
+        length: getHilbertVal(val),
+        val,
+        ...rest
+      };
+      carry += d.length;
+      return d;
+    });
+
+    new HilbertChart3D(document.getElementById('chart'))
+      .hilbertOrder(hilbertOrder)
+      .data(hilbertData)
+      .valFormatter(n => Math.round(n / hilbertLength * dataSum))
+      .rangeTooltipContent(({ name, val }) => `<b>${name}</b>: ${val} (${Math.round(val / dataSum * 100)}%)`);
+  </script>
+</body>

@@ -1,0 +1,87 @@
+<head>
+  <title>Hilbert IPv4 Address Map</title>
+
+  <script src='//cdn.jsdelivr.net/npm/hilbert-chart-3d'></script>
+<!--  <script src='../../dist/hilbert-chart-3d.js'></script>-->
+
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <div id='ipv4-chart'></div>
+
+  <script type="module">
+    import * as Ip from 'https://esm.sh/ip.js';
+    import { csvParse } from 'https://esm.sh/d3-dsv';
+
+    // Get the IPv4 data
+    fetch('./ipv4-address-space.csv').then(r => r.text()).then(csvParse).then(data => {
+      data.forEach(row => {
+        row.prefix = row.Prefix;
+        row.name = row.Designation;
+      });
+
+      new HilbertChart3D(document.getElementById('ipv4-chart'))
+        .hilbertOrder(Math.ceil(32 / 3))
+        .data(parseIpData(data))
+        .padding(0.4)
+        .valFormatter(ipFormatter)
+        .tooltipContent(d => `<b>${d.name}</b>: ${prefixFormatter(d)}`);
+    });
+
+    //
+
+    function parseIpData(ipData) {
+      const prefixes = [];
+
+      ipData.map(row => {
+        const pref = new Ip.Prefix(row.prefix);
+        return {
+          start: pref.firstIp().toNum(),
+          length: pref.countIps(),
+          name: getName(row.name),
+          infos: [row]
+        };
+      }).forEach(prefix => {
+        let last;
+
+        if (prefixes.length
+          && (last = prefixes[prefixes.length - 1])
+          && last.name === prefix.name
+          && (last.start + last.length === prefix.start)) {
+
+          last.length += prefix.length;
+          last.infos.push(prefix.infos[0]);
+        } else {
+          prefixes.push(prefix);
+        }
+      });
+
+      return prefixes;
+
+      //
+
+      function getName(designation) {
+        let name = designation;
+
+        if (name.indexOf('Administered by') > -1) {
+          name = 'Various Registries';
+        }
+
+        return name;
+      }
+    }
+
+    function ipFormatter(d) {
+      return new Ip.Addr(d).toString();
+    }
+
+    function prefixFormatter(d) {
+      const ipRange = new Ip.Range(d.start, d.start + d.length - 1),
+        prefixes = ipRange.toPrefixes();
+
+      return (prefixes.length === 1 ? prefixes[0] : ipRange).toString();
+    }
+  </script>
+</body>
