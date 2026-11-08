@@ -36,6 +36,8 @@ declare class HilbertChart<R extends RangeBounds = Range> {
   valFormatter(formatter: NumFormatter): HilbertChart<R>;
   simplifyCurves(): boolean;
   simplifyCurves(simplifyCurves: boolean): HilbertChart<R>;
+  useInstancedMeshes(): boolean;
+  useInstancedMeshes(useInstancedMeshes: boolean): HilbertChart<R>;
 
   focusOn(pos: NumericValue, length: NumericValue, ms?: number): HilbertChart<R>;
 

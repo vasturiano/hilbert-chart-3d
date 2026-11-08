@@ -2447,14 +2447,14 @@ terser@^5.49.2:
     source-map-support "~0.5.20"
 
 three-hilbert-geometry@1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/three-hilbert-geometry/-/three-hilbert-geometry-1.0.1.tgz#9175cf09a89948ef3af94cf2151f3ef95c26e828"
-  integrity sha512-MSW0yQ5Lh4vvap8LGVR6ACrb2cJOC1AJUgQyYD4Sjs/H+xiIgQvqSQhCBcRWi69aHKBImtAnx6Uz5jRKrtCGmQ==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/three-hilbert-geometry/-/three-hilbert-geometry-1.0.2.tgz#9b3d9aa7f914b641ee12d25ca5a567b64d077b3c"
+  integrity sha512-cXv7eeKfzpRfChnJUQnrdeQM8lsbmo7CF5oVACoYYpvjr+gic2rLPuxToh06c/KFa6S7orsKN9FkNQMTG4BFgw==
 
 three-hilbert@*:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/three-hilbert/-/three-hilbert-0.1.0.tgz#c6dd954232d86a570163b30a18cfbaef866de275"
-  integrity sha512-BZQNosk+vwXGiq1JsXg/h4JneCV6N+LvaC4h5s4gOQn9ozjWLf8uZ5zMdGeLdfIcUwJOTGEjz9M5suSR5BoqfQ==
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/three-hilbert/-/three-hilbert-0.2.0.tgz#1d6176b564986faf00c47a88c33ee51de188c179"
+  integrity sha512-ts2MwIZI5QVzVsJh/X8amvryH0VXJ3KvAEU8xaXP4kyYV4CzVFz0SA4bi/VSuc6CpB29/CGnK+XpuAJh+kQwkQ==
   dependencies:
     accessor-fn "1"
     d3-color "1 - 3"
@@ -2464,7 +2464,6 @@ three-hilbert@*:
     data-bind-mapper "1"
     kapsule "^1.16"
     three-hilbert-geometry "1"
-    three-spritetext "1"
     tinycolor2 "1"
 
 three-render-objects@^1.43:
@@ -2477,11 +2476,6 @@ three-render-objects@^1.43:
     float-tooltip "^1.7"
     kapsule "^1.16"
     polished "4"
-
-three-spritetext@1:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/three-spritetext/-/three-spritetext-1.10.0.tgz#479717cbf7ea64ee2e5879952bb5e15f608bf13d"
-  integrity sha512-t08iP1FCU1lQh8T5MmCpdijKgas8GDHJE0LqMGBuVu3xqMMpFnEZhTlih7FlxLPQizHIGoumUSpfOlY1GO/Tgg==
 
 "three@>=0.179 <1":
   version "0.187.0"

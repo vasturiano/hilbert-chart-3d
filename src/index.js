@@ -15,6 +15,7 @@ export default Kapsule({
     label: { default: 'name', onChange(v, state) { state.hilbert.label(v) }, triggerUpdate: false },
     labelColor: { default: () => 'white', onChange(v, state) { state.hilbert.labelColor(v) }, triggerUpdate: false },
     simplifyCurves: { default: true, onChange(v, state) { state.hilbert.simplifyCurves(v) }, triggerUpdate: false },
+    useInstancedMeshes: { default: false, onChange(v, state) { state.hilbert.useInstancedMeshes(v) }, triggerUpdate: false },
     valFormatter: { default: d => d },
     tooltipContent: { triggerUpdate: false },
     onHover: { triggerUpdate: false },
