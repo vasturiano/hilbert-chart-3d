@@ -1,6 +1,6 @@
 {
   "name": "hilbert-chart-3d",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A 3d hilbert space-filling curve D3 chart for representing one-dimensional lengths on a three-dimensional space.",
   "type": "module",
   "jsdelivr": "dist/hilbert-chart-3d.min.js",
