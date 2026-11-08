@@ -73,43 +73,52 @@ export default Kapsule({
     const roDomNode = document.createElement('div');
     el.appendChild(roDomNode);
 
-    const getHilbertObj = object => {
-      let obj = object;
-      // recurse up object chain until finding the globe object
-      while (obj && !obj.hasOwnProperty('__data')) {
-        obj = obj.parent;
+    const getHilbertObjData = (obj, intersection) => {
+      if (!obj) return null;
+      if (intersection && obj.isInstancedMesh) {
+        return obj.userData.data?.[intersection.instanceId] || null;
       }
-      return obj;
+      const hilbertObj = getHilbertObj(obj);
+      return hilbertObj?.__data || null;
+
+      function getHilbertObj(object) {
+        let obj = object;
+        // recurse up object chain until finding the globe object
+        while (obj && !obj.hasOwnProperty('__data')) {
+          obj = obj.parent;
+        }
+        return obj;
+      }
     };
+
     state.renderObjs(roDomNode)
-      .tooltipContent(obj => {
-        const o = getHilbertObj(obj);
-        return !o ? '' : state.tooltipContent
-          ? accessorFn(state.tooltipContent)(o.__data) || ''
+      .tooltipContent((obj, intersection) => {
+        const d = getHilbertObjData(obj, intersection);
+        return !d ? '' : state.tooltipContent
+          ? accessorFn(state.tooltipContent)(d) || ''
           : (() => {
             // default content
-            const d = o.__data;
             const label = accessorFn(state.label)(d);
             return `${label ? `<b>${label}</b>: ` : ''}${state.valFormatter(d.start) + (d.length > 1 ? ' - ' + state.valFormatter(d.start + d.length - (typeof d.start === 'bigint' ? 1n : 1)) : '')}`;
           })()
       })
-      .onHover(obj => {
+      .onHover((obj, _, intersection) => {
         // Update tooltip and trigger onHover events
-        const hoverObj = getHilbertObj(obj);
-        if (hoverObj !== state.hoverObj) {
-          state.onHover?.(hoverObj?.__data || null, state.hoverObj?.__data || null);
+        const hoverD = getHilbertObjData(obj, intersection);
+        if (hoverD !== state.hoverD) {
+          state.onHover?.(hoverD, state.hoverD || null);
 
           // set pointer if hovered object is clickable
           state.renderObjs.renderer().domElement.classList[
-            ((hoverObj && state.onClick) || (!hoverObj && state.onBackgroundClick)) ? 'add' : 'remove'
+            ((hoverD && state.onClick) || (!hoverD && state.onBackgroundClick)) ? 'add' : 'remove'
             ]('clickable');
 
-          state.hoverObj = hoverObj;
+          state.hoverD = hoverD;
         }
       })
-      .onClick((obj, ev) => {
-        const o = getHilbertObj(obj);
-        o ? state.onClick?.(o.__data, ev) : state.onBackgroundClick?.(ev);
+      .onClick((obj, ev, intersection) => {
+        const d = getHilbertObjData(obj, intersection);
+        d ? state.onClick?.(d, ev) : state.onBackgroundClick?.(ev);
       });
 
     state.renderObjs.camera().position.z = 500;
