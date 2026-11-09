@@ -2460,9 +2460,9 @@ three-hilbert@*:
     tinycolor2 "1"
 
 three-render-objects@^1.43:
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.43.0.tgz#83d60807e6b01a0e38d6d48d8e561bf5cf3011d4"
-  integrity sha512-CoGJ7dRJsbtGoR4YhxUQlgocZ4vnmVC0YEFsvTye0DKifHPogoa7zl9knea+3EG2+biDicTC1PW7O02TxlV2vQ==
+  version "1.43.1"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.43.1.tgz#90210f7544296fd0a0a4dad928b6f3b34a823de6"
+  integrity sha512-cT+IOUTJJk+HSG2gelVO6Sqiqc1S+D6KPPSP3dPvnlmjDx3N70JOBnnLejv34ykEAjDYoKSlXREqL7P/CqncYw==
   dependencies:
     "@tweenjs/tween.js" "18 - 25"
     accessor-fn "1"

@@ -4,6 +4,8 @@ import ThreeRenderObjects from 'three-render-objects';
 import { AmbientLight, DirectionalLight } from 'three';
 import ThreeHilbert from 'three-hilbert';
 
+import './index.css';
+
 export default Kapsule({
   props: {
     width: { default: window.innerWidth, onChange(v, state) { state.renderObjs.width(v) }, triggerUpdate: false },
@@ -71,6 +73,7 @@ export default Kapsule({
 
     // Add renderObjs
     const roDomNode = document.createElement('div');
+    roDomNode.className = 'hilbert-scene-container';
     el.appendChild(roDomNode);
 
     const getHilbertObjData = (obj, intersection) => {
