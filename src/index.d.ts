@@ -32,6 +32,8 @@ declare class HilbertChart<R extends RangeBounds = Range> {
   labelColor(colorAccessor: RangeAccessor<R, string>): HilbertChart<R>;
   padding(): RangeAccessor<R, number>;
   padding(paddingAccessor: RangeAccessor<R, number>): HilbertChart<R>;
+  paddingAbsolute(): RangeAccessor<R, number>;
+  paddingAbsolute(paddingAbsoluteAccessor: RangeAccessor<R, number>): HilbertChart<R>;
   valFormatter(): NumFormatter;
   valFormatter(formatter: NumFormatter): HilbertChart<R>;
   simplifyCurves(): boolean;

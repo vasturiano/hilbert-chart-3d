@@ -13,6 +13,7 @@ export default Kapsule({
     hilbertOrder: { default: 3, onChange(v, state) { state.hilbert.order(v) }, triggerUpdate: false }, // 0-4096 default
     data: { default: [], onChange(v, state) { state.hilbert.data(v) }, triggerUpdate: false },
     padding: { default: 0, onChange(v, state) { state.hilbert.padding(v) }, triggerUpdate: false },
+    paddingAbsolute: { default: 0, onChange(v, state) { state.hilbert.paddingAbsolute(v) }, triggerUpdate: false },
     color: { onChange(v, state) { state.hilbert.color(v) }, triggerUpdate: false },
     label: { default: 'name', onChange(v, state) { state.hilbert.label(v) }, triggerUpdate: false },
     labelColor: { default: () => 'white', onChange(v, state) { state.hilbert.labelColor(v) }, triggerUpdate: false },
