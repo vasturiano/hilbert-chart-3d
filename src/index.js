@@ -16,7 +16,7 @@ export default Kapsule({
     paddingAbsolute: { default: 0, onChange(v, state) { state.hilbert.paddingAbsolute(v) }, triggerUpdate: false },
     color: { onChange(v, state) { state.hilbert.color(v) }, triggerUpdate: false },
     label: { default: 'name', onChange(v, state) { state.hilbert.label(v) }, triggerUpdate: false },
-    labelColor: { default: () => 'white', onChange(v, state) { state.hilbert.labelColor(v) }, triggerUpdate: false },
+    labelColor: { default: () => 'lavender', onChange(v, state) { state.hilbert.labelColor(v) }, triggerUpdate: false },
     simplifyCurves: { default: true, onChange(v, state) { state.hilbert.simplifyCurves(v) }, triggerUpdate: false },
     useInstancedMeshes: { default: false, onChange(v, state) { state.hilbert.useInstancedMeshes(v) }, triggerUpdate: false },
     valFormatter: { default: d => d },
