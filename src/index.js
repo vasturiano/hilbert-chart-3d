@@ -127,7 +127,7 @@ export default Kapsule({
       });
 
     state.renderObjs.camera().position.z = 500;
-    state.controlType === 'fly' && (state.renderObjs.controls().movementSpeed = 100);
+    state.controlType === 'fly' && (state.renderObjs.controls().movementSpeed = 80);
 
     //
 

@@ -42,6 +42,6 @@
       .hilbertOrder(hilbertOrder)
       .data(hilbertData)
       .valFormatter(n => Math.round(n / hilbertLength * dataSum))
-      .rangeTooltipContent(({ name, val }) => `<b>${name}</b>: ${val} (${Math.round(val / dataSum * 100)}%)`);
+      .tooltipContent(({ name, val }) => `<b>${name}</b>: ${val} (${Math.round(val / dataSum * 100)}%)`);
   </script>
 </body>
