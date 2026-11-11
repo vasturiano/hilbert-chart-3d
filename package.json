@@ -46,7 +46,7 @@
     "kapsule": "^1.16",
     "three": ">=0.179 <1",
     "three-hilbert": "*",
-    "three-render-objects": "^1.43"
+    "three-render-objects": "^1.44"
   },
   "devDependencies": {
     "@babel/core": "^8.1.0",

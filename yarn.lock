@@ -1311,9 +1311,9 @@ color-name@~1.1.4:
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
 colord@^2.9.1:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/colord/-/colord-2.11.0.tgz#4d18d60421dcf4a253f95a186cbb1619247049ca"
-  integrity sha512-R7EZD9e+sWpUQFr3F6v747NAazZCD+OhsM0VnPkHGxSaQvw4ZvJoCVz51gemztBBoZaFvMP0qdKgFyBdBurfgA==
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/colord/-/colord-2.12.0.tgz#ce7381040981801b9fbbf2c004dc59f1d0143b5a"
+  integrity sha512-SpiONmQPZDqe50ivOTgkVikYsnp6l1HTFYqPRLNBCJJdA2Qympw2yYUzX99XlSbbKZswjiG6r+xsUpPPOHqY+Q==
 
 commander@^2.20.0:
   version "2.20.3"
@@ -1583,9 +1583,9 @@ domutils@^2.8.0:
     domhandler "^4.2.0"
 
 electron-to-chromium@^1.5.464:
-  version "1.5.479"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.479.tgz#879b8b0c0447b3d9beec2954eae77e7271844784"
-  integrity sha512-uAJdJQ7vHa4TvPfzt1TOqoRgHmav5gwmqHMPLxBH6m8Cbj5R9/z/rygTOQiZ8pe5g0ZAEogga1bP6HoKcOzx/Q==
+  version "1.5.480"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.480.tgz#4f8bd2842e66efabb4cf41b0136267dc9a57cd5f"
+  integrity sha512-7WLDoWPKc+YiH37GshK2sLagySSbcQk3K2s6swA3x+BtWUH8BtphwL+YqarJQi09Sbf+LOCIW75RQooN2PqXsA==
 
 empathic@^2.0.1:
   version "2.1.0"
@@ -1822,9 +1822,9 @@ mdn-data@2.0.14:
   integrity sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==
 
 minimatch@^11.0.5:
-  version "11.0.5"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-11.0.5.tgz#29589e94fc4d84193b2a31b082b0ec67b5ea1d42"
-  integrity sha512-snPlVppFcYWfLLFQGhDxUyBcHNtMlWmn3jtj7pEaO+DP8pqL0IvAzXhMYmn1z9ASNtgmwLBdFxSf4tMUB0OTKA==
+  version "11.0.7"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-11.0.7.tgz#696d78046604553717a82bb45b451b5319d63d34"
+  integrity sha512-Tnk+M9mPjqKDZlUd77eMSjPjhnlBIa1mABOwetMryIshUwi1YmOBdGFfQnHgn4Z8A66eLT8ENzJrxwYmKfqrZg==
   dependencies:
     "@isaacs/nonrecursive-glob-match" "^1.1.0"
     brace-expansion "^5.0.12"
@@ -2459,10 +2459,10 @@ three-hilbert@*:
     three-hilbert-geometry "1"
     tinycolor2 "1"
 
-three-render-objects@^1.43:
-  version "1.43.1"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.43.1.tgz#90210f7544296fd0a0a4dad928b6f3b34a823de6"
-  integrity sha512-cT+IOUTJJk+HSG2gelVO6Sqiqc1S+D6KPPSP3dPvnlmjDx3N70JOBnnLejv34ykEAjDYoKSlXREqL7P/CqncYw==
+three-render-objects@^1.44:
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.44.0.tgz#81e6364a107516f14c807a75f1ed8564465754ec"
+  integrity sha512-B5TI+6Jy8AARbo51w1hNzZ/Q9DIvGaPiYdNXtH4mMxTVbRSbc8OYxcScJUSUjzVxx94cqyb3YxYXblgskQFR4w==
   dependencies:
     "@tweenjs/tween.js" "18 - 25"
     accessor-fn "1"

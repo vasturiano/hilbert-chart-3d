@@ -54,7 +54,7 @@ export default Kapsule({
       state.renderObjs._destructor?.();
     }
   },
-  stateInit({ controlType = 'orbit' }) {
+  stateInit({ controlType = 'arcball' }) {
     const hilbert = new ThreeHilbert();
     return {
       hilbert,
@@ -63,7 +63,8 @@ export default Kapsule({
         .lights([
           new AmbientLight(0xcccccc, Math.PI),
           new DirectionalLight(0xffffff, 0.6 * Math.PI)
-        ])
+        ]),
+      controlType
     };
   },
 
@@ -126,6 +127,7 @@ export default Kapsule({
       });
 
     state.renderObjs.camera().position.z = 500;
+    state.controlType === 'fly' && (state.renderObjs.controls().movementSpeed = 100);
 
     //
 
