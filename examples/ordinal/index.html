@@ -1,10 +1,8 @@
 <head>
+  <style> body { margin: 0; } </style>
+
   <script src='//cdn.jsdelivr.net/npm/hilbert-chart-3d'></script>
 <!--  <script src='../../dist/hilbert-chart-3d.js'></script>-->
-
-  <style>
-      body { margin: 0; }
-  </style>
 </head>
 <body>
   <div id='chart'></div>
@@ -38,10 +36,13 @@
       return d;
     });
 
-    new HilbertChart3D(document.getElementById('chart'))
+    const chart = new HilbertChart3D(document.getElementById('chart'))
       .hilbertOrder(hilbertOrder)
       .data(hilbertData)
       .valFormatter(n => Math.round(n / hilbertLength * dataSum))
-      .tooltipContent(({ name, val }) => `<b>${name}</b>: ${val} (${Math.round(val / dataSum * 100)}%)`);
+      .tooltipContent(({ name, val }) => `<b>${name}</b>: ${val} (${Math.round(val / dataSum * 100)}%)`)
+      .onClick(d => chart.focusOn(d.start, d.length, 3000));
+
+    chart.cameraPosition({ x: 300, y: 300, z: 300 });
   </script>
 </body>
