@@ -33,16 +33,18 @@ export default Kapsule({
         state.renderObjs.fitToBbox(roBbox, transitionDuration);
       });
     },
-
     zoomToFit: function(state, transitionDuration, padding) {
       state.renderObjs.zoomTofit(transitionDuration, padding);
       return this;
     },
+    getPositionAtVal: (state, ...args) => state.hilbert.getPositionAtVal(...args),
     _animationCycle(state) {
       // Frame cycle
       state.renderObjs.tick();
       state.animationFrameRequestId = requestAnimationFrame(this._animationCycle);
     },
+    cameraPosition: (state, ...args) => state.renderObjs.cameraPosition(...args),
+    lights: (state, ...args) => state.renderObjs.lights(...args),
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
     renderer: state => state.renderObjs.renderer(), // Expose renderer
