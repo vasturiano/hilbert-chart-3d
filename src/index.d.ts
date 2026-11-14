@@ -1,5 +1,8 @@
+import { Scene, Light, Camera, WebGLRenderer } from 'three';
+
 type Accessor<In, Out> = Out | string | ((obj: In) => Out);
 type NumericValue = number | bigint;
+type ControlType = 'arcball' | 'trackball' | 'orbit' | 'fly';
 
 export interface Range {
   start: NumericValue;
@@ -7,20 +10,24 @@ export interface Range {
   [key: string]: any;
 }
 
+export interface HilbertChartOptions {
+  controlType?: ControlType;
+}
+
 type RangeBounds = Pick<Range, 'start' | 'length'>;
 type RangeAccessor<R extends RangeBounds, T> = Accessor<R, T>;
 type NumFormatter = (num: NumericValue) => string;
 
 declare class HilbertChart<R extends RangeBounds = Range> {
-  constructor(element: HTMLElement);
+  constructor(element: HTMLElement, options?: HilbertChartOptions);
 
   width(): number;
   width(width: number): HilbertChart<R>;
   height(): number;
-  height(width: number): HilbertChart<R>;
+  height(height: number): HilbertChart<R>;
 
   hilbertOrder(): number;
-  hilbertOrder(height: number): HilbertChart<R>;
+  hilbertOrder(order: number): HilbertChart<R>;
 
   data(): R[];
   data<T extends RangeBounds>(data: T[]): HilbertChart<T>;
@@ -41,14 +48,22 @@ declare class HilbertChart<R extends RangeBounds = Range> {
   useInstancedMeshes(): boolean;
   useInstancedMeshes(useInstancedMeshes: boolean): HilbertChart<R>;
 
-  focusOn(pos: NumericValue, length: NumericValue, ms?: number): HilbertChart<R>;
+  focusOn(pos: NumericValue, length: NumericValue, ms?: number): void;
+  zoomToFit(ms?: number, padding?: number): HilbertChart<R>;
+
+  scene(): Scene;
+  camera(): Camera;
+  renderer(): WebGLRenderer;
+  controls(): object;
+  lights(): Light[];
+  lights(lights: Light[]): HilbertChart<R>;
 
   tooltipContent(): RangeAccessor<R, string>;
   tooltipContent(contentAccessor: RangeAccessor<R, string>): HilbertChart<R>;
 
-  onHover(cb: (range: R | null) => void): HilbertChart<R>;
-  onClick(cb: (range: R) => void): HilbertChart<R>;
-  onBackgroundClick(cb: () => void): HilbertChart<R>;
+  onHover(cb: (range: R | null, previousRange: R | null) => void): HilbertChart<R>;
+  onClick(cb: (range: R, event: MouseEvent) => void): HilbertChart<R>;
+  onBackgroundClick(cb: (event: MouseEvent) => void): HilbertChart<R>;
 }
 
 export default HilbertChart;
