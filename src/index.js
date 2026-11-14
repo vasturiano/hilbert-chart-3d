@@ -80,15 +80,13 @@ export default Kapsule({
 
     const getHilbertObjData = (obj, intersection) => {
       if (!obj) return null;
-      if (intersection && obj.isInstancedMesh) {
-        return obj.userData.data?.[intersection.instanceId] || null;
-      }
       const hilbertObj = getHilbertObj(obj);
-      return hilbertObj?.__data || null;
+      const d = hilbertObj?.__data || null;
+      return (intersection && hilbertObj.isInstancedMesh) ? d?.[intersection.instanceId] : d;
 
       function getHilbertObj(object) {
         let obj = object;
-        // recurse up object chain until finding the globe object
+        // recurse up object chain until finding the hilbert object
         while (obj && !obj.hasOwnProperty('__data')) {
           obj = obj.parent;
         }
