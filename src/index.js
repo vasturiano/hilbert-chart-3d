@@ -62,6 +62,31 @@ export default Kapsule({
     camera: state => state.renderObjs.camera(), // Expose camera
     renderer: state => state.renderObjs.renderer(), // Expose renderer
     controls: state => state.renderObjs.controls(), // Expose controls
+    hoverOrderComparator: function(state, dataComp) {
+      state.renderObjs.hoverOrderComparator((_a, _b, a, b) => {
+        const [da, db] = [a, b].map(i => getHilbertObjData(i?.object, i));
+        if (!da) return 1;
+        if (!db) return -1;
+        return dataComp(da, db);
+      });
+      return this;
+
+      function getHilbertObjData(obj, intersection) {
+        if (!obj) return null;
+        const hilbertObj = getHilbertObj(obj);
+        const d = hilbertObj?.__data || null;
+        return (intersection && hilbertObj.isInstancedMesh) ? d?.[intersection.instanceId] : d;
+
+        function getHilbertObj(object) {
+          let obj = object;
+          // recurse up object chain until finding the hilbert object
+          while (obj && !obj.hasOwnProperty('__data')) {
+            obj = obj.parent;
+          }
+          return obj;
+        }
+      };
+    },
     _destructor: function(state) {
       cancelAnimationFrame(state.animationFrameRequestId);
       this.data([]);

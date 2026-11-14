@@ -88,6 +88,7 @@ new HilbertChart3D(<domElement>, { configOptions })
 | <b>onHover</b>(<i>fn</i>) | Callback function for range mouse over events. Receives the current range (or `null` if hovering out) and the previous range (or `null`). | - |
 | <b>onClick</b>(<i>fn</i>) | Callback function for range clicks. Receives the range object and the mouse event. | - |
 | <b>onBackgroundClick</b>(<i>fn</i>) | Callback function for click events on the empty background space. Receives the mouse event. | - |
+| <b>hoverOrderComparator</b>(<i>fn</i>) | Comparator function to use when hovering over multiple ranges under the same line of sight. This function can be used to prioritize hovering some ranges over others. | By default, hovering priority is based solely on camera proximity (closest range wins). |
 
 Use BigInt literals (for example, `12345678901234567890n`) when values exceed JavaScript's safe integer range.
 

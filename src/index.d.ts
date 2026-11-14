@@ -16,6 +16,7 @@ export interface HilbertChartOptions {
 
 type RangeBounds = { start: number; length: number } | { start: bigint; length: bigint };
 type RangeAccessor<R extends RangeBounds, T> = Accessor<R, T>;
+type RangeCompFn = (a: Range, b: Range) => number;
 type NumFormatter = (num: NumericValue) => string;
 
 declare class HilbertChart<R extends RangeBounds = Range> {
@@ -69,6 +70,7 @@ declare class HilbertChart<R extends RangeBounds = Range> {
   onHover(cb: (range: R | null, previousRange: R | null) => void): HilbertChart<R>;
   onClick(cb: (range: R, event: MouseEvent) => void): HilbertChart<R>;
   onBackgroundClick(cb: (event: MouseEvent) => void): HilbertChart<R>;
+  hoverOrderComparator(compFn: RangeCompFn): HilbertChart<R>;
 }
 
 export default HilbertChart;

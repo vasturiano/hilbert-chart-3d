@@ -1314,9 +1314,9 @@ color-name@~1.1.4:
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
 colord@^2.9.1:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/colord/-/colord-2.12.0.tgz#ce7381040981801b9fbbf2c004dc59f1d0143b5a"
-  integrity sha512-SpiONmQPZDqe50ivOTgkVikYsnp6l1HTFYqPRLNBCJJdA2Qympw2yYUzX99XlSbbKZswjiG6r+xsUpPPOHqY+Q==
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/colord/-/colord-2.13.0.tgz#29cf892a092b8990360c514bd14226270f2966fc"
+  integrity sha512-2g8RPH6UvoD1ZXYmccAuo0zfMw4mxqzXbeToeVoMSm6na0QEDXggahcZdlTFnFdahlV3I158ipRb2AIvCcwiAQ==
 
 commander@^2.20.0:
   version "2.20.3"
@@ -1586,9 +1586,9 @@ domutils@^2.8.0:
     domhandler "^4.2.0"
 
 electron-to-chromium@^1.5.464:
-  version "1.5.485"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.485.tgz#c679751783f7d6c1415aefd5b3471f833569fbaf"
-  integrity sha512-m3uadzR0Z+sR19HGWgfxoZcKv9hE/edVM9OZ+FJ4wNRyfuFtkwZJIDoehEty5sisYVwmge8lKV1tenWOyClVgw==
+  version "1.5.486"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.486.tgz#8d46dcbd2ec08d98ffd67af164f38f58ff1238da"
+  integrity sha512-rpybw4Ac4ak/An6G1Me2+61xzwobowDGyuJe71QHHOVpkZv4fPVobsLl7WH6zHSKusAMpaHxGKTpOvpy7+r3dQ==
 
 empathic@^2.0.1:
   version "2.1.0"
@@ -2462,10 +2462,10 @@ three-hilbert@1:
     three-hilbert-geometry "1"
     tinycolor2 "1"
 
-three-render-objects@^1.44:
-  version "1.44.1"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.44.1.tgz#109990977c78176f0ada5a625f5a12d65a35cf8a"
-  integrity sha512-XsjD8yiYjL7p61KiNK2bCVHAzUQ2Jq38ifqZu+pEHkefcpsjzPSb5kN0W0+qmjnGKoqMKmzm+p6k1M3Z4VmINw==
+three-render-objects@^1.45:
+  version "1.45.0"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.45.0.tgz#88def222cbd85dd52b114f2b8c3b693ea8cb3264"
+  integrity sha512-+5UX3imCtvrIiKFL0Lcln9lhdcCi+Qs1K9Y2F59+LNubmlgVbtldqCDqO8DTfZNEoUzHAgyrNwvguy45CWCTfQ==
   dependencies:
     "@tweenjs/tween.js" "18 - 25"
     accessor-fn "1"
