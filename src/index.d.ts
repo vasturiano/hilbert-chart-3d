@@ -21,6 +21,8 @@ type NumFormatter = (num: NumericValue) => string;
 declare class HilbertChart<R extends RangeBounds = Range> {
   constructor(element: HTMLElement, options?: HilbertChartOptions);
 
+  _destructor(): void;
+
   width(): number;
   width(width: number): HilbertChart<R>;
   height(): number;
