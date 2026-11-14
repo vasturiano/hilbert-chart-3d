@@ -44,14 +44,14 @@ export default Kapsule({
       state.renderObjs.tick();
       state.animationFrameRequestId = requestAnimationFrame(this._animationCycle);
     },
-    cameraPosition: (state, ...args) => {
+    cameraPosition: function(state, ...args) {
       if (args.length) { // setter
         state.renderObjs.cameraPosition(...args);
         return this;
       }
       return state.renderObjs.cameraPosition();
     },
-    lights: (state, ...args) => {
+    lights: function(state, ...args) {
       if (args.length) { // setter
         state.renderObjs.lights(...args);
         return this;
