@@ -42,7 +42,7 @@ new HilbertChart3D(<domElement>, { configOptions })
 
 | Config options | Description | Default |
 | --- | --- | :--: |
-| <b>controlType</b>: <i>str</i> | Which type of control to use to control the camera. Choice between [trackball](https://threejs.org/examples/misc_controls_trackball.html), [orbit](https://threejs.org/examples/#misc_controls_orbit) or [fly](https://threejs.org/examples/misc_controls_fly.html). | `arcball` |
+| <b>controlType</b>: <i>str</i> or <i>class</i> | Which type of control to use to control the camera. Choice between [trackball](https://threejs.org/examples/misc_controls_trackball.html), [arcball](https://threejs.org/examples/misc_controls_arcball.html), [orbit](https://threejs.org/examples/#misc_controls_orbit), [fly](https://threejs.org/examples/misc_controls_fly.html), or a custom [Three.js controls](https://threejs.org/docs/#Controls) class. | `arcball` |
 
 ### Container
 | Method | Description | Default |
@@ -57,21 +57,22 @@ new HilbertChart3D(<domElement>, { configOptions })
 | <b>simplifyCurves</b>([<i>boolean</i>]) | Getter/setter for whether to simplify the resolution of the curve to the most canonical 2-bit boundary that fits the range integral. For example, in a 2nd order curve (64 values), a range from 8 to 23 can be simplified from 16 vertices to 2 (each filling a cube with 8 values). This simplification greatly reduces the number of vertices in the curve and improves the calculation and rendering performance, specially for high-order ranges which tend to fall on bit boundaries. | `true` |
 | <b>padding</b>([<i>number</i>, <i>string</i> or <i>fn</i>]) | Getter/setter for the range object padding ratio accessor function (`fn(range)`), attribute or a constant number for all ranges. The padding ratio should be a number between `0` and `1` representing the proportional size of the padding space compared to the width of the path. | 0 |
 | <b>paddingAbsolute</b>([<i>number</i>, <i>string</i> or <i>fn</i>]) | Getter/setter for the range object absolute padding accessor function (`fn(range)`), attribute or a constant number for all ranges. The value represents the absolute padding size as a fraction of the full Hilbert width. | 0 |
+| <b>getPositionAtVal</b>(<i>value</i>) | Returns the `THREE.Vector3` position at the specified value along the curve. `value` may be a Number or BigInt. | |
 
 ### Data input
 | Method | Description | Default |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| <b>data</b>([<i>array</i>]) | Getter/setter for the list of ranges to render. Each range object should follow the minimum syntax of `{start: <number or bigint>, length: <number or bigint>}`. | `[]` |
-| <b>color</b>([<i>string</i> or <i>fn</i>]) | Getter/setter for the range object color accessor function (`fn(range)`) or attribute. | (cycle through d3.schemeCategory20 for unique labels) |
+| <b>data</b>([<i>array</i>]) | Getter/setter for the list of ranges to render. Each range object should follow the minimum syntax of `{start: <number or bigint>, length: <number or bigint>}`; `start` and `length` must both be Numbers or both be BigInts. | `[]` |
+| <b>color</b>([<i>string</i> or <i>fn</i>]) | Getter/setter for the range object color accessor function (`fn(range)`) or attribute. | (cycle through d3.schemePaired for unique labels) |
 | <b>label</b>([<i>string</i> or <i>fn</i>]) | Getter/setter for the range object label accessor function (`fn(range)`) or attribute. | `name` |
-| <b>labelColor</b>([<i>string</i> or <i>fn</i>]) | Getter/setter for the range object label color accessor function (`fn(range)`) or attribute. A falsy value disables the label. | `() => 'white'` |
-| <b>valFormatter</b>([<i>fn</i>]) | Getter/setter for the value formatting function (`fn(value)`), in default tooltips. Values may be Numbers or BigInts; should return a string. | `d => d` |
+| <b>labelColor</b>([<i>string</i>, <i>false</i> or <i>fn</i>]) | Getter/setter for the range object label color accessor function (`fn(range)`) or attribute. A falsy value disables the label. | `() => 'white'` |
+| <b>valFormatter</b>([<i>fn</i>]) | Getter/setter for the value formatting function (`fn(value)`), in default tooltips. Values may be Numbers or BigInts. | `d => d` |
 
 ### Render control
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>useInstancedMeshes</b>([<i>boolean</i>]) | Getter/setter for whether to render compatible segments with [THREE.InstancedMesh](https://threejs.org/docs/#InstancedMesh) to reduce draw calls. It's recommended to enable this for very large datasets. Segments that cannot be instanced use regular meshes. | `false` |
-| <b>zoomToFit</b>([<i>ms</i>], [<i>px</i>], [<i>nodeFilterFn</i>]) | Automatically moves the camera so that all of the hilbert segments become visible within its field of view. It accepts two optional arguments: the first defines the duration of the transition (in ms) to animate the camera motion (default: 0ms). The second argument is the amount of padding (in px) between the edge of the canvas and the outermost node location (default: 10px). | `(0, 10)` |
+| <b>zoomToFit</b>([<i>ms</i>], [<i>px</i>]) | Automatically moves the camera so that all of the hilbert segments become visible within its field of view. It accepts two optional arguments: the first defines the duration of the transition (in ms) to animate the camera motion (default: 0ms). The second argument is the amount of padding (in px) between the edge of the canvas and the outermost node location (default: 10px). | `(0, 10)` |
 | <b>focusOn</b>(<i>pos</i>, <i>length</i>, [<i>ms</i>]) | Zoom-in on a particular area of the chart, defined by [`pos`, `pos+length-1`]. `pos` and `length` may be Numbers or BigInts. An optional 3rd argument defines the duration of the transition (in ms) to animate the zooming motion. A value of 0 (default) jumps immediately to the final position. ||
 | <b>cameraPosition</b>([<i>{x,y,z}</i>], [<i>lookAt</i>], [<i>ms</i>]) | Getter/setter for the camera position, in terms of `x`, `y`, `z` coordinates. Each of the coordinates is optional, allowing for motion in just some dimensions. The optional second argument can be used to define the direction that the camera should aim at, in terms of an `{x,y,z}` point in the 3D space. The 3rd optional argument defines the duration of the transition (in ms) to animate the camera motion. A value of 0 (default) moves the camera immediately to the final position. | |
 | <b>lights</b>([<i>array</i>]) | Getter/setter for the list of lights to use in the scene. Each item should be an instance of [Light](https://threejs.org/docs/#api/en/lights/Light). | [AmbientLight](https://threejs.org/docs/?q=ambient#api/en/lights/AmbientLight) + [DirectionalLight](https://threejs.org/docs/#api/en/lights/DirectionalLight) (from above) |
@@ -84,9 +85,9 @@ new HilbertChart3D(<domElement>, { configOptions })
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>tooltipContent</b>([<i>string</i> or <i>fn</i>]) | Getter/setter for the range object tooltip content accessor function or attribute. Supports plain text or HTML content. | `<label>: <start> - <end>` |
-| <b>onHover</b>(<i>fn</i>) | Callback function for range mouse over events. The range object (or `null` if hovering out) is included as single argument `onHover(range)`. | - |
-| <b>onClick</b>(<i>fn</i>) | Callback function for range clicks. The range object is included as single argument `onClick(range)`. | - |
-| <b>onBackgroundClick</b>(<i>fn</i>) | Callback function for click events on the empty bakcground space. The event object is included as single argument `onBackgroundClick(event)`. | - |
+| <b>onHover</b>(<i>fn</i>) | Callback function for range mouse over events. Receives the current range (or `null` if hovering out) and the previous range (or `null`). | - |
+| <b>onClick</b>(<i>fn</i>) | Callback function for range clicks. Receives the range object and the mouse event. | - |
+| <b>onBackgroundClick</b>(<i>fn</i>) | Callback function for click events on the empty background space. Receives the mouse event. | - |
 
 Use BigInt literals (for example, `12345678901234567890n`) when values exceed JavaScript's safe integer range.
 

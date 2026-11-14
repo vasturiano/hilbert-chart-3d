@@ -32,9 +32,10 @@ export default Kapsule({
         const roBbox = { x: [bbox.min.x, bbox.max.x], y: [bbox.min.y, bbox.max.y], z: [bbox.min.z, bbox.max.z] }
         state.renderObjs.fitToBbox(roBbox, transitionDuration);
       });
+      return this;
     },
     zoomToFit: function(state, transitionDuration, padding) {
-      state.renderObjs.zoomTofit(transitionDuration, padding);
+      state.renderObjs.zoomToFit(transitionDuration, padding);
       return this;
     },
     getPositionAtVal: (state, ...args) => state.hilbert.getPositionAtVal(...args),
@@ -43,8 +44,20 @@ export default Kapsule({
       state.renderObjs.tick();
       state.animationFrameRequestId = requestAnimationFrame(this._animationCycle);
     },
-    cameraPosition: (state, ...args) => state.renderObjs.cameraPosition(...args),
-    lights: (state, ...args) => state.renderObjs.lights(...args),
+    cameraPosition: (state, ...args) => {
+      if (args.length) { // setter
+        state.renderObjs.cameraPosition(...args);
+        return this;
+      }
+      return state.renderObjs.cameraPosition();
+    },
+    lights: (state, ...args) => {
+      if (args.length) { // setter
+        state.renderObjs.lights(...args);
+        return this;
+      }
+      return state.renderObjs.lights();
+    },
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
     renderer: state => state.renderObjs.renderer(), // Expose renderer

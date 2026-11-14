@@ -1,20 +1,20 @@
-import { Scene, Light, Camera, WebGLRenderer } from 'three';
+import { Scene, Light, Camera, WebGLRenderer, Controls, Vector3 } from 'three';
 
 type Accessor<In, Out> = Out | string | ((obj: In) => Out);
 type NumericValue = number | bigint;
-type ControlType = 'arcball' | 'trackball' | 'orbit' | 'fly';
+type ControlType = 'arcball' | 'trackball' | 'orbit' | 'fly' | Controls;
+type Coordinates = { x: number; y: number; z: number };
+type CameraPosition = Coordinates & { lookAt: Coordinates };
 
-export interface Range {
-  start: NumericValue;
-  length: NumericValue;
-  [key: string]: any;
-}
+export type Range =
+  | { start: number; length: number; [key: string]: any }
+  | { start: bigint; length: bigint; [key: string]: any };
 
 export interface HilbertChartOptions {
   controlType?: ControlType;
 }
 
-type RangeBounds = Pick<Range, 'start' | 'length'>;
+type RangeBounds = { start: number; length: number } | { start: bigint; length: bigint };
 type RangeAccessor<R extends RangeBounds, T> = Accessor<R, T>;
 type NumFormatter = (num: NumericValue) => string;
 
@@ -35,8 +35,8 @@ declare class HilbertChart<R extends RangeBounds = Range> {
   color(colorAccessor: RangeAccessor<R, string>): HilbertChart<R>;
   label(): RangeAccessor<R, string>;
   label(textAccessor: RangeAccessor<R, string>): HilbertChart<R>;
-  labelColor(): RangeAccessor<R, string>;
-  labelColor(colorAccessor: RangeAccessor<R, string>): HilbertChart<R>;
+  labelColor(): RangeAccessor<R, string | false>;
+  labelColor(colorAccessor: RangeAccessor<R, string | false>): HilbertChart<R>;
   padding(): RangeAccessor<R, number>;
   padding(paddingAccessor: RangeAccessor<R, number>): HilbertChart<R>;
   paddingAbsolute(): RangeAccessor<R, number>;
@@ -50,11 +50,14 @@ declare class HilbertChart<R extends RangeBounds = Range> {
 
   focusOn(pos: NumericValue, length: NumericValue, ms?: number): void;
   zoomToFit(ms?: number, padding?: number): HilbertChart<R>;
+  cameraPosition(): CameraPosition;
+  cameraPosition(position: Partial<Coordinates>, lookAt?: Coordinates, transitionMs?: number): HilbertChart<R>;
+  getPositionAtVal(value: NumericValue): Vector3;
 
   scene(): Scene;
   camera(): Camera;
   renderer(): WebGLRenderer;
-  controls(): object;
+  controls(): Controls;
   lights(): Light[];
   lights(lights: Light[]): HilbertChart<R>;
 
