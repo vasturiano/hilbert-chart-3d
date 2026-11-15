@@ -1,12 +1,10 @@
 <head>
   <title>Hilbert IPv4 Address Map</title>
 
+  <style> body { margin: 0; } </style>
+
   <script src='//cdn.jsdelivr.net/npm/hilbert-chart-3d'></script>
 <!--  <script src='../../dist/hilbert-chart-3d.js'></script>-->
-
-  <style>
-    body { margin: 0; }
-  </style>
 </head>
 <body>
   <div id='ipv4-chart'></div>
@@ -22,12 +20,14 @@
         row.name = row.Designation;
       });
 
-      new HilbertChart3D(document.getElementById('ipv4-chart'))
+      const chart = new HilbertChart3D(document.getElementById('ipv4-chart'))
         .hilbertOrder(Math.ceil(32 / 3))
         .data(parseIpData(data))
-        .padding(0.4)
+        .padding(0.15)
         .valFormatter(ipFormatter)
-        .tooltipContent(d => `<b>${d.name}</b>: ${prefixFormatter(d)}`);
+        .tooltipContent(d => `<b>${d.name}</b>: ${prefixFormatter(d)}`)
+        .onClick(d => chart.focusOn(d.start, d.length, 3000))
+        .cameraPosition({ x: -350, y: 160, z: -175 }, { x: -50 });
     });
 
     //
