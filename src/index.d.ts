@@ -48,8 +48,8 @@ declare class HilbertChart<R extends RangeBounds = Range> {
   valFormatter(formatter: NumFormatter): HilbertChart<R>;
   simplifyCurves(): boolean;
   simplifyCurves(simplifyCurves: boolean): HilbertChart<R>;
-  useInstancedMeshes(): boolean;
-  useInstancedMeshes(useInstancedMeshes: boolean): HilbertChart<R>;
+  useInstancedMeshes(): RangeAccessor<R, boolean>;
+  useInstancedMeshes(useInstancedMeshesAccessor: RangeAccessor<R, boolean>): HilbertChart<R>;
 
   focusOn(pos: NumericValue, length: NumericValue, ms?: number): void;
   zoomToFit(ms?: number, padding?: number): HilbertChart<R>;
