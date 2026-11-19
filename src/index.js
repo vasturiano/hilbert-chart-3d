@@ -76,11 +76,11 @@ export default Kapsule({
       state.renderObjs._destructor?.();
     }
   },
-  stateInit({ controlType = 'arcball' }) {
+  stateInit({ controlType = 'arcball', rendererConfig }) {
     const hilbert = new ThreeHilbert();
     return {
       hilbert,
-      renderObjs: ThreeRenderObjects({ controlType })
+      renderObjs: ThreeRenderObjects({ controlType, rendererConfig })
         .objects([hilbert])
         .lights([
           new AmbientLight(0xcccccc, Math.PI),

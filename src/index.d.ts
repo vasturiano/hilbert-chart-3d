@@ -1,4 +1,4 @@
-import { Scene, Light, Camera, WebGLRenderer, Controls, Vector3 } from 'three';
+import { Scene, Light, Camera, WebGLRenderer, Controls, Vector3, WebGLRendererParameters } from 'three';
 
 type Accessor<In, Out> = Out | string | ((obj: In) => Out);
 type NumericValue = number | bigint;
@@ -12,6 +12,7 @@ export type Range =
 
 export interface HilbertChartOptions {
   controlType?: ControlType;
+  rendererConfig?: WebGLRendererParameters;
 }
 
 type RangeBounds = { start: number; length: number } | { start: bigint; length: bigint };

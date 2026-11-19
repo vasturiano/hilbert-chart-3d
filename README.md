@@ -43,6 +43,7 @@ new HilbertChart3D(<domElement>, { configOptions })
 | Config options | Description | Default |
 | --- | --- | :--: |
 | <b>controlType</b>: <i>str</i> or <i>class</i> | Which type of control to use to control the camera. Choice between [trackball](https://threejs.org/examples/misc_controls_trackball.html), [arcball](https://threejs.org/examples/misc_controls_arcball.html), [orbit](https://threejs.org/examples/#misc_controls_orbit), [fly](https://threejs.org/examples/misc_controls_fly.html), or a custom [Three.js controls](https://threejs.org/docs/#Controls) class. | `arcball` |
+| <b>rendererConfig</b>: <i>object</i> | Configuration parameters to pass to the [ThreeJS WebGLRenderer](https://threejs.org/docs/#api/en/renderers/WebGLRenderer) constructor. | `{ antialias: true, alpha: true }` |
 
 ### Container
 | Method | Description | Default |
