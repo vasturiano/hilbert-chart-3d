@@ -1,0 +1,144 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+<!--  <script src='../../dist/hilbert-chart-3d.js'></script>-->
+</head>
+
+<body>
+<div id='chart'></div>
+
+<script type="module">
+  import HilbertChart3D from 'https://esm.sh/hilbert-chart-3d';
+  import * as Ip from 'https://esm.sh/ip.js';
+  import { csvParse } from 'https://esm.sh/d3-dsv';
+
+  const colors = {
+    all: 'rgba(0,0,128,0.08)',
+    iana: 'rgba(0,0,128,0.12)',
+    bgp: 'firebrick',
+    hover: {
+      all: 'rgba(0,0,128,0.12)',
+      iana: 'rgba(0,0,128,0.25)',
+      bgp: 'mediumblue'
+    }
+  };
+
+  const chart = new HilbertChart3D(document.getElementById('chart'), {
+    controlType: 'fly',
+    rendererConfig: { reversedDepthBuffer: true, antialias: true, alpha: true }
+  })
+    .hilbertOrder(Math.ceil(128 / 3))
+    .useInstancedMeshes(d => d.type === 'bgp')
+    .paddingAbsolute(d => d.type === 'all' ? 1e-4 : 1e-3 / log10(d.length))
+    .valFormatter(ipFormatter)
+    .color(d => colors[d.type])
+    .labelColor(d => d.type === 'all' ? false : d.type === 'bgp' ? 'lightcoral' : 'white')
+    .tooltipContent(d => `<b>${d.name || ''}</b>: ${prefixFormatter(d)}`)
+    .onHover(d1 => chart.color(d2 => (d1 && (d1.name === d2.name) ? colors.hover : colors)[d2.type]))
+    .onClick(d => chart.focusOn(d.start, d.length, 3000))
+    .hoverOrderComparator((a, b) => ((b.type === 'bgp') - (a.type === 'bgp')) || ((b.type === 'iana') - (a.type === 'iana')))
+    .cameraPosition({ x: -350, y: 160, z: -175 });
+
+  const camera = chart.camera();
+  camera.near = 0.001;
+  const controls = chart.controls();
+  controls.addEventListener('change', () => {
+    // Adjust speed based on camera position
+    const d2 = camera.position.lengthSq();
+    controls.movementSpeed = Math.min(500, Math.max(0.01, d2 * 1e-3));
+  });
+
+  chart.data([{
+    start: 0n,
+    length: 2n**128n,
+    name: 'Complete IPv6 Address Space',
+    type: 'all'
+  }]);
+
+  // Get the IANA data
+  fetch('./ipv6-address-space.csv').then(r => r.text()).then(csvParse).then(data => {
+    data.forEach(row => {
+      row.prefix = row['IPv6 Prefix'];
+      row.name = row.Allocation;
+    });
+    chart.data([...chart.data(), ...parseIpData(data)]);
+  });
+
+  fetch('./ipv6-unicast-address-assignments.csv').then(r => r.text()).then(csvParse).then(data => {
+    data.forEach(row => {
+      row.prefix = row.Prefix;
+      row.name = row.Designation;
+    });
+    chart.data([...chart.data(), ...parseIpData(data)]);
+  });
+
+  // Get BGP routing table data
+  const v6PrefixRegex = /^\*>?\s*([\da-fA-F:]*\/\d{1,3})/;
+  const originAsnRegex = /(\d+)\s[ie?]$/;
+  fetch('https://bgp.potaroo.net/v6/as2.0/bgptable.txt')
+  // fetch('./_bgptable-v6.txt')
+    .then(r => r.text())
+    .then(text => {
+      const rows = text.split(/\r?\n/);
+
+      let carryPrefix;
+      const routes = rows.map(row => {
+        !carryPrefix && (carryPrefix = row.match(v6PrefixRegex)?.[1]);
+        (carryPrefix === '::/0') && (carryPrefix = null); // ignore default route
+
+        if (carryPrefix) {
+          const matches = row.match(originAsnRegex);
+          if (matches) {
+            const prefix = new Ip.Prefix(carryPrefix, undefined, false);
+            carryPrefix = null;
+            return { prefix, asn: matches[1] };
+          }
+        }
+        return null;
+      }).filter(route => route);
+
+      const data = routes.map(({ prefix, asn }) => ({
+        start: prefix.firstIp().toNum(),
+        length: prefix.countIps(),
+        name: `AS${asn}`,
+        type: 'bgp'
+      })).sort((a, b) => Number(b.length - a.length));
+
+      chart.data([...chart.data(), ...data]);
+    });
+
+  //
+
+  function parseIpData(ipData) {
+    return ipData
+      .filter(row => row.name !== 'Reserved by IETF')
+      .filter(row => row.Status !== 'RESERVED' || row.Designation !== 'IANA')
+      .map(row => {
+        const pref = new Ip.Prefix(row.prefix, undefined, false);
+        return {
+          start: pref.firstIp().toNum(),
+          length: pref.countIps(),
+          name: row.name,
+          infos: [row],
+          type: 'iana'
+        };
+      });
+  }
+
+  function ipFormatter(d) {
+    return new Ip.Addr(d, false).toString();
+  }
+
+  function prefixFormatter(d) {
+    const ipRange = new Ip.Range(d.start, d.start + d.length - 1n, false),
+      prefixes = ipRange.toPrefixes();
+
+    return (prefixes.length === 1 ? prefixes[0] : ipRange).toString();
+  }
+
+  function log10(bigint) {
+    const s = bigint.toString(10);
+    return s.length + Math.log10("0." + s.substring(0, 15));
+  }
+</script>
+</body>
