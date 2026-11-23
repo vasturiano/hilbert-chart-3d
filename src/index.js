@@ -8,17 +8,20 @@ import './index.css';
 
 export default Kapsule({
   props: {
-    width: { default: window.innerWidth, onChange(v, state) { state.renderObjs.width(v) }, triggerUpdate: false },
-    height: { default: window.innerHeight, onChange(v, state) { state.renderObjs.height(v) }, triggerUpdate: false },
-    hilbertOrder: { default: 3, onChange(v, state) { state.hilbert.order(v) }, triggerUpdate: false }, // 0-4096 default
-    data: { default: [], onChange(v, state) { state.hilbert.data(v) }, triggerUpdate: false },
-    padding: { default: 0, onChange(v, state) { state.hilbert.padding(v) }, triggerUpdate: false },
-    paddingAbsolute: { default: 0, onChange(v, state) { state.hilbert.paddingAbsolute(v) }, triggerUpdate: false },
-    color: { onChange(v, state) { state.hilbert.color(v) }, triggerUpdate: false },
-    label: { default: 'name', onChange(v, state) { state.hilbert.label(v) }, triggerUpdate: false },
-    labelColor: { default: () => 'lavender', onChange(v, state) { state.hilbert.labelColor(v) }, triggerUpdate: false },
-    simplifyCurves: { default: true, onChange(v, state) { state.hilbert.simplifyCurves(v) }, triggerUpdate: false },
-    useInstancedMeshes: { default: false, onChange(v, state) { state.hilbert.useInstancedMeshes(v) }, triggerUpdate: false },
+    width: { default: window.innerWidth, onChange(v, state) { state.renderObjs.width(v) }},
+    height: { default: window.innerHeight, onChange(v, state) { state.renderObjs.height(v) }},
+    hilbertOrder: { default: 3, onChange(v, state) { state.hilbert.order(v) }}, // 0-4096 default
+    data: { default: [], onChange(v, state) {
+      state.hilbert.data(v);
+      state.renderObjs.pointerRaycasterThrottleMs(v.length > 1e4 ? 200 : 50); // throttle raycaster when there's a lot of objects
+    }},
+    padding: { default: 0, onChange(v, state) { state.hilbert.padding(v) }},
+    paddingAbsolute: { default: 0, onChange(v, state) { state.hilbert.paddingAbsolute(v) }},
+    color: { onChange(v, state) { state.hilbert.color(v) }},
+    label: { default: 'name', onChange(v, state) { state.hilbert.label(v) }},
+    labelColor: { default: () => 'lavender', onChange(v, state) { state.hilbert.labelColor(v) }},
+    simplifyCurves: { default: true, onChange(v, state) { state.hilbert.simplifyCurves(v) }},
+    useInstancedMeshes: { default: false, onChange(v, state) { state.hilbert.useInstancedMeshes(v) }},
     valFormatter: { default: d => d },
     tooltipContent: { triggerUpdate: false },
     onHover: { triggerUpdate: false },
