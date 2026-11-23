@@ -12,6 +12,20 @@
   <script type="module">
     import * as Ip from 'https://esm.sh/ip.js';
     import { csvParse } from 'https://esm.sh/d3-dsv';
+    import { scaleOrdinal } from 'https://esm.sh/d3-scale';
+    import { schemePaired } from 'https://esm.sh/d3-scale-chromatic';
+    import { color } from 'https://esm.sh/d3-color';
+
+    const opaqueColorScale = scaleOrdinal(schemePaired);
+    const transparentColorScale = scaleOrdinal(schemePaired.map(c => {
+      const res = color(c);
+      res.opacity = 0.25;
+      return res.toString();
+    }));
+    const colorScale = (k, transparent = false) => {
+      !transparent ? transparentColorScale(k) : opaqueColorScale(k); // register the color
+      return transparent ? transparentColorScale(k) : opaqueColorScale(k);
+    }
 
     // Get the IPv4 data
     fetch('./ipv4-address-space.csv').then(r => r.text()).then(csvParse).then(data => {
@@ -25,8 +39,10 @@
         .data(parseIpData(data))
         .padding(0.15)
         .valFormatter(ipFormatter)
+        .color(d => colorScale(d.name))
         .tooltipContent(d => `<b>${d.name}</b>: ${prefixFormatter(d)}`)
         .onClick(d => chart.focusOn(d.start, d.length, 3000))
+        .onHover(d1 => chart.color(d2 => colorScale(d2 , d1 && (d1 !== d2))))
         .cameraPosition({ x: -350, y: 160, z: -175 }, { x: -50 });
     });
 
