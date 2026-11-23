@@ -2454,9 +2454,9 @@ three-hilbert-geometry@1:
   integrity sha512-gyEg87de4/9asVuFvcJ7ayQYcCyoBLJpcU2TVaM5QnH/D9KB35gmZgwlh/zDRmuV3739hHkPpJkB3fGJZClCew==
 
 three-hilbert@1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/three-hilbert/-/three-hilbert-1.2.0.tgz#867207d80e9dda746e18765da81c0f30011d84e3"
-  integrity sha512-Vl82OihtV4V+pUd4k0RhPkros3J3aqurkdlZpRsWxBYYKqv2SO8b2ovt5gOAk0TsjkVMROOBB3lwvJNN7N2nZA==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/three-hilbert/-/three-hilbert-1.2.2.tgz#eb300cbeacf0f545c6ee00a934ada2b2be9d690d"
+  integrity sha512-US3U9cQYJomD8LgDQGycAet8xZ9Gih6lbILb5DxKD6+/4qewSVYVQA8RJO9EwgIkHHr0PF/xtDfknLLlyYVHZw==
   dependencies:
     accessor-fn "1"
     d3-color "1 - 3"
