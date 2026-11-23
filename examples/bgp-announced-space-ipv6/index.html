@@ -33,7 +33,7 @@
     .tooltipContent(d => `<b>${d.name || ''}</b>: ${prefixFormatter(d)}`)
     .onHover(d1 => chart.color(d2 => (d1 && (d1.name === d2.name) ? colors.hover : colors)[d2.type]))
     .onClick(d => chart.focusOn(d.start, d.length, 3000))
-    .hoverOrderComparator((a, b) => ((b.type === 'bgp') - (a.type === 'bgp')) || ((b.type === 'iana') - (a.type === 'iana')))
+    .hoverOrderComparator((a, b) => [a, b].some(d => d.type === 'bgp') ? (b.type === 'bgp') - (a.type === 'bgp') : Number(a.length - b.length))
     .cameraPosition({ x: -350, y: 160, z: -175 }, { x: -50 });
 
   chart.data([{
@@ -63,8 +63,8 @@
   // Get BGP routing table data
   const v6PrefixRegex = /^\*>?\s*([\da-fA-F:]*\/\d{1,3})/;
   const originAsnRegex = /(\d+)\s[ie?]$/;
-  fetch('https://bgp.potaroo.net/v6/as2.0/bgptable.txt')
-  // fetch('./_bgptable-v6.txt')
+  // fetch('https://bgp.potaroo.net/v6/as2.0/bgptable.txt')
+  fetch('./bgptable-v6.txt')
     .then(r => r.text())
     .then(text => {
       const rows = text.split(/\r?\n/);
