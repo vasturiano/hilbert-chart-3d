@@ -23,9 +23,7 @@
     }
   };
 
-  const chart = new HilbertChart3D(document.getElementById('chart'), {
-    rendererConfig: { reversedDepthBuffer: true, antialias: true, alpha: true }
-  })
+  const chart = new HilbertChart3D(document.getElementById('chart'))
     .hilbertOrder(Math.ceil(128 / 3))
     .useInstancedMeshes(d => d.type === 'bgp')
     .paddingAbsolute(d => d.type === 'all' ? 0 : 1e-3 / log10(d.length))

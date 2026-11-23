@@ -79,7 +79,7 @@ export default Kapsule({
       state.renderObjs._destructor?.();
     }
   },
-  stateInit({ controlType = 'orbit', rendererConfig }) {
+  stateInit({ controlType = 'orbit', rendererConfig = { reversedDepthBuffer: true, antialias: true, alpha: true }}) {
     const hilbert = new ThreeHilbert();
     return {
       hilbert,
