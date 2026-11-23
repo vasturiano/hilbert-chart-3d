@@ -16,6 +16,7 @@ See also the [2D version](https://github.com/vasturiano/hilbert-chart).
 
 * [IPv4 Address Space](https://vasturiano.github.io/hilbert-chart-3d/examples/ipv4-address-space/) ([source](https://github.com/vasturiano/hilbert-chart-3d/blob/master/examples/ipv4-address-space/index.html))
 * [Ordinal (cubic pie chart)](https://vasturiano.github.io/hilbert-chart-3d/examples/ordinal/) ([source](https://github.com/vasturiano/hilbert-chart-3d/blob/master/examples/ordinal/index.html))
+* [IPv6 BGP Routing Table](https://vasturiano.github.io/hilbert-chart-3d/examples/bgp-announced-space-ipv6/) ([source](https://github.com/vasturiano/hilbert-chart-3d/blob/master/examples/bgp-announced-space-ipv6/index.html))
 
 ## Quick start
 
