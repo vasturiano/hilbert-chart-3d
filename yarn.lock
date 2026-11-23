@@ -2449,14 +2449,14 @@ terser@^5.49.2:
     source-map-support "~0.5.20"
 
 three-hilbert-geometry@1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/three-hilbert-geometry/-/three-hilbert-geometry-1.2.0.tgz#ec4d3ea72a8a55d111365e8c2ae467a0b0e3dfb6"
-  integrity sha512-gyEg87de4/9asVuFvcJ7ayQYcCyoBLJpcU2TVaM5QnH/D9KB35gmZgwlh/zDRmuV3739hHkPpJkB3fGJZClCew==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/three-hilbert-geometry/-/three-hilbert-geometry-1.2.1.tgz#776903cbc3f83e2776e86de5079f6d909ce8a0cb"
+  integrity sha512-a0YqBlO32XkvECwZy1R692+l6slwHPP/xF/zpHf+QsFNjUBLFHeIHsBLNE3cgqiGeMdbfyz/j7XsndGaqUcUjw==
 
 three-hilbert@1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/three-hilbert/-/three-hilbert-1.2.2.tgz#eb300cbeacf0f545c6ee00a934ada2b2be9d690d"
-  integrity sha512-US3U9cQYJomD8LgDQGycAet8xZ9Gih6lbILb5DxKD6+/4qewSVYVQA8RJO9EwgIkHHr0PF/xtDfknLLlyYVHZw==
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/three-hilbert/-/three-hilbert-1.2.3.tgz#aaaf613ed6e71ad3d96cffe0dd10437025da96f4"
+  integrity sha512-TfKVFCSHt+/d9s2RXhwXPac1v08YfTXDnmausHH9rqqz51Y1Jf2FJN0Fnwc9n04ye2Kjidy4zGfQokXsfwsVFg==
   dependencies:
     accessor-fn "1"
     d3-color "1 - 3"
