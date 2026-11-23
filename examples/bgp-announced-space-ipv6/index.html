@@ -29,7 +29,7 @@
   })
     .hilbertOrder(Math.ceil(128 / 3))
     .useInstancedMeshes(d => d.type === 'bgp')
-    .paddingAbsolute(d => d.type === 'all' ? 1e-4 : 1e-3 / log10(d.length))
+    .paddingAbsolute(d => d.type === 'all' ? 0 : 1e-3 / log10(d.length))
     .valFormatter(ipFormatter)
     .color(d => colors[d.type])
     .labelColor(d => d.type === 'all' ? false : d.type === 'bgp' ? 'lightcoral' : 'white')
