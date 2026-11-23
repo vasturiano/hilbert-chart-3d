@@ -79,7 +79,7 @@ export default Kapsule({
       state.renderObjs._destructor?.();
     }
   },
-  stateInit({ controlType = 'trackball', rendererConfig }) {
+  stateInit({ controlType = 'orbit', rendererConfig }) {
     const hilbert = new ThreeHilbert();
     return {
       hilbert,
