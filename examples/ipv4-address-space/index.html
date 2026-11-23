@@ -43,7 +43,7 @@
         .tooltipContent(d => `<b>${d.name}</b>: ${prefixFormatter(d)}`)
         .onClick(d => chart.focusOn(d.start, d.length, 3000))
         .onHover(d1 => chart.color(d2 => colorScale(d2 , d1 && (d1 !== d2))))
-        .cameraPosition({ x: -350, y: 160, z: -175 }, { x: -50 });
+        .cameraPosition({}, { x: -50 });
     });
 
     //
