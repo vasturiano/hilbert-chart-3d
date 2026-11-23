@@ -132,8 +132,11 @@ export default Kapsule({
         d ? state.onClick?.(d, ev) : state.onBackgroundClick?.(ev);
       });
 
-    state.renderObjs.camera().near = 0.001;
-    state.renderObjs.camera().position.z = 500;
+    const camera = state.renderObjs.camera();
+    camera().near = 0.001;
+    camera().position.x = -350;
+    camera().position.y = 160;
+    camera().position.z = -175;
     state.controlType === 'fly' && (state.renderObjs.controls().movementSpeed = 80);
 
     //
