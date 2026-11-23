@@ -63,8 +63,7 @@
   // Get BGP routing table data
   const v6PrefixRegex = /^\*>?\s*([\da-fA-F:]*\/\d{1,3})/;
   const originAsnRegex = /(\d+)\s[ie?]$/;
-  // fetch('https://bgp.potaroo.net/v6/as2.0/bgptable.txt')
-  fetch('./bgptable-v6.txt')
+  fetch('https://bgp.potaroo.net/v6/as2.0/bgptable.txt')
     .then(r => r.text())
     .then(text => {
       const rows = text.split(/\r?\n/);
