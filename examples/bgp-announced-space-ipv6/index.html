@@ -34,7 +34,7 @@
     .onHover(d1 => chart.color(d2 => (d1 && (d1.name === d2.name) ? colors.hover : colors)[d2.type]))
     .onClick(d => chart.focusOn(d.start, d.length, 3000))
     .hoverOrderComparator((a, b) => [a, b].some(d => d.type === 'bgp') ? (b.type === 'bgp') - (a.type === 'bgp') : Number(a.length - b.length))
-    .cameraPosition({ x: -350, y: 160, z: -175 }, { x: -50 });
+    .cameraPosition({}, { x: -50 });
 
   chart.data([{
     start: 0n,
