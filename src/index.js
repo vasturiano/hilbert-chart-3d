@@ -13,7 +13,7 @@ export default Kapsule({
     hilbertOrder: { default: 3, onChange(v, state) { state.hilbert.order(v) }}, // 0-4096 default
     data: { default: [], onChange(v, state) {
       state.hilbert.data(v);
-      state.renderObjs.pointerRaycasterThrottleMs(v.length > 1e4 ? 200 : 50); // throttle raycaster when there's a lot of objects
+      state.renderObjs.pointerRaycasterThrottleMs(v.length > 1e4 ? 100 : 50); // throttle raycaster when there's a lot of objects
     }},
     padding: { default: 0, onChange(v, state) { state.hilbert.padding(v) }},
     paddingAbsolute: { default: 0, onChange(v, state) { state.hilbert.paddingAbsolute(v) }},
