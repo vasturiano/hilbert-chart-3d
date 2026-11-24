@@ -1262,9 +1262,9 @@ boolbase@^1.0.0:
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
 brace-expansion@^5.0.12:
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-5.0.13.tgz#e2d4497370f7e385e6f96b57bd7ff11d77d85851"
-  integrity sha512-Vh3dmFbc4wZeox7M9I/0L9GfFd83Su4+yCck/OF9Gi/P/dAHn0RT7X4K9R7gMNMhDck3DvhR6QXsnQdjjgwNvQ==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-5.1.0.tgz#719c6a5c65fc0dee849b69ff25b4c023458537e2"
+  integrity sha512-aa11Dv491GKnYqxaul3aRJ0szew7yMJMfZPnqD44NjGrZXoj62l41OEDDpdpC4eE2P88vBFfLuSyRhpG91NUvg==
   dependencies:
     balanced-match "^4.0.2"
 
@@ -1592,9 +1592,9 @@ domutils@^2.8.0:
     domhandler "^4.2.0"
 
 electron-to-chromium@^1.5.486:
-  version "1.5.492"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.492.tgz#bd63a064a6ab036db630af5dfe83f4533de7cbf0"
-  integrity sha512-4uMs7omhajKiud0GqALLTazS/zyvHLTLmDWVTR+e6BnyJo5bSNrph/JoRWEFJJmY75ct9hCiSGsbFF9fLe5gDw==
+  version "1.5.493"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.493.tgz#4ef245924d84e294e2b34e052f10ed18afef1870"
+  integrity sha512-/Wto2sKd0EpepzMqwSP2il2TNc+rnBDF6k1poCvhRKpaSSD4sLGRBE+FydqHs2QwcW9cXKLVDqnauzJy1oByYw==
 
 empathic@^2.0.1:
   version "2.1.0"
@@ -2454,9 +2454,9 @@ three-hilbert-geometry@1:
   integrity sha512-a0YqBlO32XkvECwZy1R692+l6slwHPP/xF/zpHf+QsFNjUBLFHeIHsBLNE3cgqiGeMdbfyz/j7XsndGaqUcUjw==
 
 three-hilbert@1:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/three-hilbert/-/three-hilbert-1.2.3.tgz#aaaf613ed6e71ad3d96cffe0dd10437025da96f4"
-  integrity sha512-TfKVFCSHt+/d9s2RXhwXPac1v08YfTXDnmausHH9rqqz51Y1Jf2FJN0Fnwc9n04ye2Kjidy4zGfQokXsfwsVFg==
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/three-hilbert/-/three-hilbert-1.2.5.tgz#4cf4888d8c64287179d5ae3345359416fb9260a2"
+  integrity sha512-BYKud7JyCRK+Cg3IkTbDeE4p1YyxMiOQmB3r0uKoNOCoLwRRmo2tujZMIjrrXqL78Mn/TRZGWDJgJzrUA4YXgw==
   dependencies:
     accessor-fn "1"
     d3-color "1 - 3"
@@ -2468,10 +2468,10 @@ three-hilbert@1:
     three-hilbert-geometry "1"
     tinycolor2 "1"
 
-three-render-objects@^1.45:
-  version "1.45.0"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.45.0.tgz#88def222cbd85dd52b114f2b8c3b693ea8cb3264"
-  integrity sha512-+5UX3imCtvrIiKFL0Lcln9lhdcCi+Qs1K9Y2F59+LNubmlgVbtldqCDqO8DTfZNEoUzHAgyrNwvguy45CWCTfQ==
+three-render-objects@^1.46:
+  version "1.46.0"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.46.0.tgz#2899996b09d7c88de3b625a6efecfe97cdcd4776"
+  integrity sha512-hEUQyhqm9a8Y/H/XlHVaYj6IHukcZ+IdxIKiOAcvbXCQFjhhxjz3/Vc7tIlW98bFZE8d//ZIR/1/EPHLCA7VAg==
   dependencies:
     "@tweenjs/tween.js" "18 - 25"
     accessor-fn "1"
