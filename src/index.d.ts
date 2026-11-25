@@ -52,7 +52,7 @@ declare class HilbertChart<R extends RangeBounds = Range> {
   useInstancedMeshes(): RangeAccessor<R, boolean>;
   useInstancedMeshes(useInstancedMeshesAccessor: RangeAccessor<R, boolean>): HilbertChart<R>;
 
-  focusOn(pos: NumericValue, length: NumericValue, ms?: number): void;
+  focusOn(pos: NumericValue, length: NumericValue, ms?: number): HilbertChart<R>;
   zoomToFit(ms?: number, padding?: number): HilbertChart<R>;
   cameraPosition(): CameraPosition;
   cameraPosition(position: Partial<Coordinates>, lookAt?: Coordinates, transitionMs?: number): HilbertChart<R>;
